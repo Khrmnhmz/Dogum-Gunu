@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Doğum Günün Kutlu Olsun!</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      background: linear-gradient(135deg, #FFD700, #001489); /* Sarı - Lacivert */
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: white;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin: 0;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+
+    p {
+      font-size: 1.5em;
+      margin-top: 10px;
+    }
+
+    .ball {
+      font-size: 5em;
+      margin-top: 20px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: white;
+      color: #001489;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #001489;
+      color: white;
+    }
+
+    /* Karanlık ekran */
+    #overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 999;
+/* Zarf */
+#envelope {
+  font-size: 10em; /* önce 5em idi, şimdi 10em yaptık */
+  cursor: pointer;
+  opacity: 0;
+  transform: scale(0.1);
+  transition: transform 1s ease, opacity 1s ease;
+}
+
+#clickText {
+  display: none;
+  margin-top: 20px;
+  font-size: 2em; /* yazıyı da biraz büyüttüm */
+  background: rgba(255,255,255,0.1);
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
+    /* Açılma animasyonu */
+    @keyframes openEnvelope {
+      0%   { transform: scale(1) rotate(0deg); }
+      50%  { transform: scale(1.2) rotate(-10deg); }
+      100% { transform: scale(1) rotate(0deg); }
+    }
+
+    /* Mesaj */
+    #message {
+      display: none;
+      font-size: 1.3em;
+      margin-top: 20px;
+      max-width: 600px;
+      line-height: 1.5em;
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 20px;
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Doğum Günün Kutlu Olsun Mila! 🎉</h1>
+  <p>Nice mutlu, sağlıklı ve Fenerbahçe dolu yıllara! 💛💙</p>
+  <div class="ball">⚽</div>
+
+  <button class="btn" onclick="startAnimation()">Sürprize Tıkla</button>
+
+  <!-- Karanlık ekran -->
+  <div id="overlay">
+    <div id="envelope" onclick="openEnvelope()">✉️</div>
+    <div id="clickText">📩 Zarfı Aç!</div>
+    <div id="message">
+      Selam seni çok tanımıyorum doğum günün olduğunu öğrendim, hediyeni geç verdim 
+      ve maalesef sana elle tutulur bir şey alamadım.  
+      Boş geçmek istemedim ve senin için bu siteyi hazırladım.  
+      Basit olduğunun farkındayım ama umarım beğenirsin.  
+      <br><br>💛💙 İYİ Kİ DOĞDUN MİLA 💛💙
+    </div>
+  </div>
+
+  <script>
+    function startAnimation() {
+      const overlay = document.getElementById('overlay');
+      const envelope = document.getElementById('envelope');
+      const clickText = document.getElementById('clickText');
+
+      overlay.style.display = 'flex';
+
+      setTimeout(() => {
+        envelope.style.opacity = 1;
+        envelope.style.transform = 'scale(1)';
+        setTimeout(() => {
+          clickText.style.display = 'block';
+        }, 1000);
+      }, 300);
+    }
+
+    function openEnvelope() {
+      const envelope = document.getElementById('envelope');
+      const clickText = document.getElementById('clickText');
+      const message = document.getElementById('message');
+
+      clickText.style.display = 'none';
+
+      // Zarf animasyonu
+      envelope.style.animation = 'openEnvelope 3s ease forwards';
+
+      setTimeout(() => {
+        envelope.style.display = 'none';
+        message.style.display = 'block';
+      }, 3000); // 3 saniye sonra mesaj gelsin
+    }
+  </script>
+</body>
+</html>
+
